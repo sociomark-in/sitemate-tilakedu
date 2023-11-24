@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+defined('APP_VERSION') OR define('APP_NAME', 'Sitemark');
 defined('APP_VERSION') OR define('APP_VERSION', 'v1.0.0-beta20');
 /*
 |--------------------------------------------------------------------------
