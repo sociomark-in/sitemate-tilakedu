@@ -326,39 +326,6 @@ class CI_Config {
 	// -------------------------------------------------------------
 
 	/**
-	 * App URL
-	 *
-	 * Returns app_home [. uri_string]
-	 *
-	 * @uses	CI_Config::_uri_string()
-	 *
-	 * @param	string|string[]	$uri	URI string or an array of segments
-	 * @param	string	$protocol
-	 * @return	string
-	 */
-	public function app_home($uri = '', $protocol = NULL)
-	{
-		$app_home = $this->slash_item('app_home');
-
-		if (isset($protocol))
-		{
-			// For protocol-relative links
-			if ($protocol === '')
-			{
-				$app_home = substr($app_home, strpos($app_home, '//'));
-			}
-			else
-			{
-				$app_home = $protocol.substr($app_home, strpos($app_home, '://'));
-			}
-		}
-
-		return $app_home.$this->_uri_string($uri);
-	}
-
-	// -------------------------------------------------------------
-
-	/**
 	 * Build URI string
 	 *
 	 * @used-by	CI_Config::site_url()
