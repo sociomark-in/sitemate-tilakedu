@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 defined('APP_VERSION') OR define('APP_NAME', 'Sitemark');
 defined('APP_VERSION') OR define('APP_VERSION', 'v1.0.0-beta20');
+defined('APP_URL') OR define('APP_URL', 'http://localhost:8000/sitemate-tilakedu/');
+defined('FILE_PATH') OR define('FILE_PATH', '');
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

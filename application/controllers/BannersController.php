@@ -16,7 +16,7 @@ class BannersController extends CI_Controller
 
 	// Helping Functions
 
-	public $folderUpload = "./uploads/banners/";
+	public $folderUpload = FILE_PATH . "./uploads/banners/";
 	
 	public function upload()
 	{
@@ -39,7 +39,8 @@ class BannersController extends CI_Controller
 				return false;
 			} else {
 				$data = $this->upload->data();
-				$fileURL = ltrim($this->folderUpload, $this->folderUpload[0]) . $data['raw_name'] . $data['file_ext'];
+				$fileURL = $data['raw_name'] . $data['file_ext'];
+				$fileURL = $data['orig_name'];
 				return array(
 					'file' => $fileURL,
 				);
@@ -76,11 +77,13 @@ class BannersController extends CI_Controller
 		}
 	}
 
-	public function update($id)
+	public function update()
 	{
+		$id = $this->input->post('id');
+		
 		$data = $this->input->post();
 		$upload = $this->upload();
-		if ($upload !== false) {
+		if ($upload) {
 			// Fetch & Delete Old file
 			$get_single = $this->BannerModel->select_only(['file_url'], ['id' => $id]);
 			$this->delete_from_server($get_single['file_url']);
@@ -95,6 +98,7 @@ class BannersController extends CI_Controller
 	public function delete()
 	{
 		$id = $this->input->post('id');
+
 		$get_single = $this->BannerModel->select_only(['file_url'], ['id' => $id])[0];
 		$this->delete_from_server($get_single['file_url']);
 		if ($this->BannerModel->delete($id)) {

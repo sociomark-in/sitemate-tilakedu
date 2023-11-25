@@ -1,6 +1,6 @@
 <?php
 
-class BannerModel extends CI_Model
+class DocumentModel extends CI_Model
 {
 	public function __construct()
 	{

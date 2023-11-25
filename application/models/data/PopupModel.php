@@ -1,13 +1,13 @@
 <?php
 
-class BannerModel extends CI_Model
+class PopupModel extends CI_Model
 {
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	public $tableName = "general_marketing_banners_website";
+	public $tableName = "general_marketing_popups_website";
 
 	public function select(array $condition = null){
 		if(isset($condition)){

@@ -79,7 +79,7 @@
 									<div class="col-lg-4 col-md-6 col-12 mb-3">
 										<div class="card" data-bs-toggle="modal" data-bs-target="#modal-new_image<?= $i ?>">
 											<div class="wrap banner_thumb">
-												<img class="w-100" src="<?= base_url($active_banners[$i]['file_url']) ?>" alt="<?= $active_banners[$i]['title'] ?>">
+												<img class="w-100" src="<?= home_url() . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
 											</div>
 										</div>
 									</div>
@@ -98,7 +98,7 @@
 													<div class="col-xl-7 col-md-6 col-12">
 														<div class="card">
 															<div class="wrap banner_thumb">
-																<img class="w-100" src="<?= base_url($active_banners[$i]['file_url']) ?>" alt="<?= $active_banners[$i]['title'] ?>">
+																<img class="w-100" src="<?= home_url() . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
 															</div>
 														</div>
 													</div>
@@ -117,15 +117,15 @@
 														</div>
 														<div class="card">
 															<div class="card-body">
-																<?= form_open_multipart("") ?>
+																<?= form_open_multipart("api/banner/update", null, array('id'=> $active_banners[$i]['id'])) ?>
 																<div class="mb-3">
 																	<label for="" class="form-label">Banner Title</label>
-																	<input type="text" class="form-control">
+																	<input type="text" name="banner_title" value="<?= $active_banners[$i]['title'] ?>" class="form-control">
 																	<small class="form-text">Any name for banner for just representation purpose.</small>
 																</div>
 																<div class="mb-3">
 																	<label class="form-label" for="">Replace Image</label>
-																	<input id="choose" class="form-control" name="files" type="file" size="20" />
+																	<input id="choose" class="form-control" name="files" value="<?= $active_banners[$i]['file_url'] ?>" type="file" size="20" />
 																	<small class="form-text">*Only .jpeg Images are accepted. <br> *(Size of the banner should be 1920px X 1080px)</small>
 																</div>
 																<button type="submit" class="btn btn-icon btn-primary">
