@@ -81,17 +81,24 @@ class BannersController extends CI_Controller
 	{
 		$id = $this->input->post('id');
 		
-		$data = $this->input->post();
-		$upload = $this->upload();
-		if ($upload) {
-			// Fetch & Delete Old file
-			$get_single = $this->BannerModel->select_only(['file_url'], ['id' => $id]);
-			$this->delete_from_server($get_single['file_url']);
-
-			$data['file_url'] = $upload['file'];
-			if ($this->BannerModel->update($data, $id)) {
-				redirect("");
+		$data['title'] = $this->input->post('banner_title');
+		// print_r($data);
+		// die;
+		if(isset($_FILES)){
+			print_r("Files Present___");
+			print_r($_FILES);
+			$upload = $this->upload();
+			if ($upload) {
+				// Fetch & Delete Old file
+				$get_single = $this->BannerModel->select_only(['file_url'], ['id' => $id])[0];
+				$this->delete_from_server("/uploads/banners/" . $get_single['file_url']);
+				$data['file_url'] = $upload['file'];
 			}
+		} else{
+			print_r("Files Absent___");
+		}
+		if ($this->BannerModel->update($data, $id)) {
+			redirect("banners/all");
 		}
 	}
 

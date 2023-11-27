@@ -10,13 +10,13 @@ class PopupsController extends CI_Controller
 
 	public function list()
 	{
-		$data['active_banners'] = $this->PopupModel->select();
-		$this->load->view('panel/marketing/banners/list', $data);
+		$data['active_popups'] = $this->PopupModel->select();
+		$this->load->view('panel/marketing/popups/list', $data);
 	}
 
 	// Helping Functions
 
-	public $folderUpload = "./uploads/banners/";
+	public $folderUpload = "./uploads/popups/";
 	
 	public function upload()
 	{
@@ -26,7 +26,7 @@ class PopupsController extends CI_Controller
 			}
 			$config['upload']['upload_path']        = $this->folderUpload;
 			$config['upload']['allowed_types']      = 'jpg|png';
-			$config['upload']['max_size']           = 3000;
+			// $config['upload']['max_size']           = 3000;
 			$config['upload']['file_name']			= random_string('alnum', 16);
 
 
@@ -64,15 +64,21 @@ class PopupsController extends CI_Controller
 	 */
 	public function add()
 	{
-		// print_r([$data, $upload]);
-		// die;
 		$upload = $this->upload();
 		if ($upload) {
-			$data['title'] = $this->input->post('banner_title');
+			$data = [
+				'title' => $this->input->post('popup_title'),
+				'destination' => $this->input->post('popup_url'),
+				'target_url' => ($this->input->post('popup_target_url') == ""? base_url() : $this->input->post('popup_target_url')),
+				'visible_from' => $this->input->post('visible_from'),
+				'visible_upto' => $this->input->post('visible_to'),
+			];
 			$data['file_url'] = $upload['file'];
 			if ($this->PopupModel->insert($data)) {
-				redirect(base_url('banners/all'));
+				redirect(base_url('popups/all'));
 			}
+		} else {
+			print_r("Upload Error");
 		}
 	}
 
@@ -99,7 +105,7 @@ class PopupsController extends CI_Controller
 		$this->delete_from_server($get_single['file_url']);
 		if ($this->PopupModel->delete($id)) {
 			// Fetch & Delete Old file
-			redirect(base_url('banners/all'));
+			redirect(base_url('popups/all'));
 		}
 	}
 }

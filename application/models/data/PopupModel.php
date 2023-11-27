@@ -28,6 +28,7 @@ class PopupModel extends CI_Model
 
 	public function insert(array $data) : bool{
 		// default start time is datetime + 1 hour & end time is date + 1 day
+		// title	file_url	destination	target_url	visible_from	visible_upto	
 		if($this->db->insert($this->tableName, $data)){
 			return true;
 		} else {

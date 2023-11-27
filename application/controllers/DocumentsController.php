@@ -10,14 +10,14 @@ class DocumentsController extends CI_Controller
 
 	public function list()
 	{
-		$data['active_banners'] = $this->DocumentModel->select();
-		$this->load->view('panel/marketing/banners/list', $data);
+		$data['active_documents'] = $this->DocumentModel->select();
+		$this->load->view('panel/content/documents/list', $data);
 	}
 
 	// Helping Functions
 
-	public $folderUpload = "./uploads/banners/";
-
+	public $folderUpload = FILE_PATH . "./uploads/documents/";
+	
 	public function upload()
 	{
 		if (!empty($_FILES)) {
@@ -39,7 +39,8 @@ class DocumentsController extends CI_Controller
 				return false;
 			} else {
 				$data = $this->upload->data();
-				$fileURL = ltrim($this->folderUpload, $this->folderUpload[0]) . $data['raw_name'] . $data['file_ext'];
+				$fileURL = $data['raw_name'] . $data['file_ext'];
+				$fileURL = $data['orig_name'];
 				return array(
 					'file' => $fileURL,
 				);
@@ -68,38 +69,48 @@ class DocumentsController extends CI_Controller
 		// die;
 		$upload = $this->upload();
 		if ($upload) {
-			$data['title'] = $this->input->post('banner_title');
+			$data['title'] = $this->input->post('document_title');
 			$data['file_url'] = $upload['file'];
 			if ($this->DocumentModel->insert($data)) {
-				redirect(base_url('banners/all'));
+				redirect(base_url('documents/all'));
 			}
 		}
 	}
 
-	public function update($id)
+	public function update()
 	{
-		$data = $this->input->post();
-		$upload = $this->upload();
-		if ($upload !== false) {
-			// Fetch & Delete Old file
-			$get_single = $this->DocumentModel->select_only(['file_url'], ['id' => $id]);
-			$this->delete_from_server($get_single['file_url']);
-
-			$data['file_url'] = $upload['file'];
-			if ($this->DocumentModel->update($data, $id)) {
-				redirect("");
+		$id = $this->input->post('id');
+		
+		$data['title'] = $this->input->post('document_title');
+		// print_r($data);
+		// die;
+		if(isset($_FILES)){
+			print_r("Files Present___");
+			print_r($_FILES);
+			$upload = $this->upload();
+			if ($upload) {
+				// Fetch & Delete Old file
+				$get_single = $this->DocumentModel->select_only(['file_url'], ['id' => $id])[0];
+				$this->delete_from_server("/uploads/documents/" . $get_single['file_url']);
+				$data['file_url'] = $upload['file'];
 			}
+		} else{
+			print_r("Files Absent___");
+		}
+		if ($this->DocumentModel->update($data, $id)) {
+			redirect("documents/all");
 		}
 	}
 
 	public function delete()
 	{
 		$id = $this->input->post('id');
+
 		$get_single = $this->DocumentModel->select_only(['file_url'], ['id' => $id])[0];
 		$this->delete_from_server($get_single['file_url']);
 		if ($this->DocumentModel->delete($id)) {
 			// Fetch & Delete Old file
-			redirect(base_url('banners/all'));
+			redirect(base_url('documents/all'));
 		}
 	}
 }

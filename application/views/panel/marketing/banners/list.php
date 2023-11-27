@@ -79,7 +79,7 @@
 									<div class="col-lg-4 col-md-6 col-12 mb-3">
 										<div class="card" data-bs-toggle="modal" data-bs-target="#modal-new_image<?= $i ?>">
 											<div class="wrap banner_thumb">
-												<img class="w-100" src="<?= home_url() . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
+												<img class="w-100" src="<?= APP_URL . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
 											</div>
 										</div>
 									</div>
@@ -98,7 +98,7 @@
 													<div class="col-xl-7 col-md-6 col-12">
 														<div class="card">
 															<div class="wrap banner_thumb">
-																<img class="w-100" src="<?= home_url() . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
+																<img class="w-100" src="<?= APP_URL . "/uploads/banners/" . $active_banners[$i]['file_url'] ?>" alt="<?= $active_banners[$i]['title'] ?>">
 															</div>
 														</div>
 													</div>

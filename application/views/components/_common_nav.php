@@ -10,11 +10,9 @@
 
 			</div>
 			<div class="navbar-nav align-items-center">
-				<?php if ($this->session->user['role'] == "admin") : ?>
-					<li class="nav-item">
-						<a class="nav-link" href="<?= base_url('setting/app-settings/currency') ?>"><i class="ti ti-world"></i></a>
-					</li>
-				<?php endif ?>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('setting/app-settings/currency') ?>"><i class="ti ti-world"></i></a>
+				</li>
 				<li class="nav-item dropdown dropdown-hover position-static">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<i class="ti ti-bell icon icon-left"></i>Notifications
@@ -32,14 +30,14 @@
 					<a href="#" class="nav-link avatar-link d-flex lh-1 text-reset px-2 dropdown-toggle align-items-center" data-bs-toggle="dropdown" aria-label="Open user menu">
 						<span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)">PK</span>
 						<div class="d-none d-xl-block ps-2">
-							<div><?= $this->session->user['name'] ?></div>
-							<div class="mt-1 small text-secondary"><?= $this->session->user['role'] ?></div>
+							<div>Joey</div>
+							<div class="mt-1 small text-secondary">Admin</div>
 						</div>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
 							<div class="px-3">
-								<?= $this->session->user['name'] ?>
+								
 							</div>
 						</li>
 						<li>
@@ -95,66 +93,66 @@
 	</div>
 </div>
 <nav class="navbar navbar-expand-md">
-    <div class="collapse navbar-collapse" id="navbar-menu">
-        <div class="navbar w-100">
-            <div class="container-xl">
-                <div class="row m-0 g-0 justify-content-between w-100">
-                    <ul class="navbar-nav col-md-auto col-12">
-                        <li class="nav-item active">
-                            <a class="nav-link nav-link-icon" href="<?= base_url() ?>">
-                                <i class="ti ti-home"></i>
-                                <span class="nav-link-title">
-                                    Home
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="<?= base_url('banners/all') ?>">
-                                <i class="ti ti-photo"></i>
-                                <span class="nav-link-title">
-                                    Banners
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="<?= base_url('popups/all') ?>">
-                                <i class="ti ti-photo"></i>
-                                <span class="nav-link-title">
-                                    Popups
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="<?= base_url() ?>">
-                                <i class="ti ti-photo"></i>
-                                <span class="nav-link-title">
-                                    Galleries
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="<?= base_url() ?>">
-                                <i class="ti ti-file-type-pdf"></i>
-                                <span class="nav-link-title">
-                                    Documents
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last col-auto">
-                        <form action="./" method="get" autocomplete="off" novalidate="">
-                            <div class="input-icon">
-                                <span class="input-icon-addon">
-                                    <i class="ti ti-search"></i>
-                                </span>
-                                <input type="text" value="" class="form-control" placeholder="Search…" aria-label="Search in website">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="collapse navbar-collapse" id="navbar-menu">
+		<div class="navbar w-100">
+			<div class="container-xl">
+				<div class="row m-0 g-0 justify-content-between w-100">
+					<ul class="navbar-nav col-md-auto col-12">
+						<li class="nav-item active">
+							<a class="nav-link nav-link-icon" href="<?= base_url() ?>">
+								<i class="ti ti-home"></i>
+								<span class="nav-link-title">
+									Home
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-link-icon" href="<?= base_url('banners/all') ?>">
+								<i class="ti ti-photo"></i>
+								<span class="nav-link-title">
+									Banners
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-link-icon" href="<?= base_url('popups/all') ?>">
+								<i class="ti ti-photo"></i>
+								<span class="nav-link-title">
+									Popups
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-link-icon" href="<?= base_url() ?>">
+								<i class="ti ti-photo"></i>
+								<span class="nav-link-title">
+									Galleries
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-link-icon" href="<?= base_url("documents/pdfs/all") ?>">
+								<i class="ti ti-file-type-pdf"></i>
+								<span class="nav-link-title">
+									Documents
+								</span>
+							</a>
+						</li>
+					</ul>
+					<div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last col-auto">
+						<form action="./" method="get" autocomplete="off" novalidate="">
+							<div class="input-icon">
+								<span class="input-icon-addon">
+									<i class="ti ti-search"></i>
+								</span>
+								<input type="text" value="" class="form-control" placeholder="Search…" aria-label="Search in website">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </nav>
 <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">

@@ -63,8 +63,8 @@ $route['popup/(:any)'] = 'PopupsController/details/$1';
 $route['banners/all'] = 'BannersController/list';
 $route['banner/(:any)'] = 'BannersController/details/$1';
 
-$route['documents/pdfs/all'] = 'DocumentController/list';
-$route['document/pdfs/(:any)'] = 'DocumentController/details/$1';
+$route['documents/pdfs/all'] = 'DocumentsController/list';
+$route['document/pdfs/(:any)'] = 'DocumentsController/details/$1';
 
 $route['login'] = 'AuthController/login';
 $route['invoice/get/(:any)'] = 'InvoiceController/index';
@@ -75,9 +75,14 @@ $route['api/gallery-images/upload'] = 'GalleryController/upload';
 $route['api/gallery-data/update'] = 'GalleryController/update_gallery_info';
 
 $route['api/banner/new']['POST'] = 'BannersController/add';
+$route['api/banner/update']['POST'] = 'BannersController/update';
 $route['api/banner/delete']['POST'] = 'BannersController/delete';
 $route['api/banner/upload'] = '';
 $route['api/banner-data/update'] = '';
+
+$route['api/popup/new']['POST'] = 'PopupsController/add';
+$route['api/popup/update']['POST'] = 'PopupsController/update';
+$route['api/popup/delete']['POST'] = 'PopupsController/delete';
 
 $route['api/pdf/upload'] = '';
 $route['api/pdf-data/update'] = '';

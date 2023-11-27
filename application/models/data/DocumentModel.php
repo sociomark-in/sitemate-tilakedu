@@ -7,7 +7,7 @@ class DocumentModel extends CI_Model
 		parent::__construct();
 	}
 
-	public $tableName = "general_marketing_banners_website";
+	public $tableName = "general_content_pdfs_website";
 
 	public function select(array $condition = null){
 		if(isset($condition)){
